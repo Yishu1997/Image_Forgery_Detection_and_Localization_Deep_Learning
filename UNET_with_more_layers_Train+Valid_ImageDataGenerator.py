@@ -300,10 +300,10 @@ checkpoint = ModelCheckpoint('C:/Keras_Tutorial/Saved_Unet/UNET_Extra_Layers/Plo
 # Image Data Generator
 train_datagen = ImageDataGenerator()
 #train_datagen.fit(X_train)
-train_iterator = train_datagen.flow(X_train, y_train, batch_size= 16)
+train_iterator = train_datagen.flow(X_train, y_train, batch_size= 32)
 
 test_datagen = ImageDataGenerator()
-test_iterator = test_datagen.flow(X_valid, y_valid, batch_size = 16)
+test_iterator = test_datagen.flow(X_valid, y_valid, batch_size = 32)
 
 #lr_scheduler = tf.keras.callbacks.ReduceLROnPlateau(monitor="val_loss", factor=0.5 ,patience=7, min_lr = 0.00001, verbose = 1)
 
@@ -311,7 +311,7 @@ CLR = CyclicLR(
     mode='triangular',
     base_lr= 0.00001,
     max_lr=0.0007,
-    step_size = 6* (X_train.shape[0] // 16) #STEP_SIZE * (trainX.shape[0] // config.BATCH_SIZE)
+    step_size = 6* (X_train.shape[0] // 32) #STEP_SIZE * (trainX.shape[0] // config.BATCH_SIZE)
     )
 
 epochs = 40
